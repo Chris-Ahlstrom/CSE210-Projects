@@ -1,7 +1,7 @@
 public class Journal
 {
-    public List<Entry> _Entries = new List<Entry>();
-    public string _UserName;
+    public List<Entry> _entries = new List<Entry>();
+    public string _userName;
     
     public void Write(string prompt)
     {
@@ -11,14 +11,14 @@ public class Journal
         entry._prompt = prompt;
         Console.WriteLine($"Date: {entry._entryDate} - Prompt: {entry._prompt}");
         entry._response = Console.ReadLine();
-        _Entries.Add(entry);
+        _entries.Add(entry);
         CountTodaysEntries();
     }
 
     public void Display()
     {
         Console.WriteLine("------------------------------------------------------------------------------------------------------");
-        foreach (Entry entry in _Entries)
+        foreach (Entry entry in _entries)
         {
             entry.Display();
             Console.WriteLine("------------------------------------------------------------------------------------------------------");
@@ -41,11 +41,11 @@ public class Journal
         }
         else
         {
-            fileName = _UserName + ".txt";
+            fileName = _userName + ".txt";
         }
         using (StreamWriter outputFile = new StreamWriter(fileName))
         {
-            foreach (Entry entry in _Entries)
+            foreach (Entry entry in _entries)
             {
                 outputFile.WriteLine($"{entry._entryDate}|{entry._prompt}|{entry._response}");
             }
@@ -55,60 +55,60 @@ public class Journal
     public void Load()
     {
         Console.Write("Would you like to load your journal? (y/n) ");
-        string input = Console.ReadLine();
-        string fileName;
-        if (input == "n")
+        string _input = Console.ReadLine();
+        string _fileName;
+        if (_input == "n")
         {
             Console.Write("What file name do would you like to load the journal from? ");
-            fileName = Console.ReadLine();
-            if (!fileName.Contains(".txt"))
+            _fileName = Console.ReadLine();
+            if (!_fileName.Contains(".txt"))
             {
-                fileName = fileName + ".txt";
+                _fileName = _fileName + ".txt";
             }
         }
         else
         {
-            fileName = _UserName + ".txt";
+            _fileName = _userName + ".txt";
         }
-        string[] lines = System.IO.File.ReadAllLines(fileName);
-        foreach (string line in lines)
+        string[] _lines = System.IO.File.ReadAllLines(_fileName);
+        foreach (string _line in _lines)
         {
-            string[] parts = line.Split("|");
-            Entry entry = new Entry();
-            entry._entryDate = parts[0];
-            entry._prompt = parts[1];
-            entry._response = parts[2];
-            _Entries.Add(entry);
+            string[] _parts = _line.Split("|");
+            Entry _entry = new Entry();
+            _entry._entryDate = _parts[0];
+            _entry._prompt = _parts[1];
+            _entry._response = _parts[2];
+            _entries.Add(_entry);
         }
     }
 
     public void CountTodaysEntries()
     {
-        int today = 0;
-        DateTime theCurrentTime = DateTime.Now;
-        string todaysDate = theCurrentTime.ToShortDateString();
-        foreach (Entry entry in _Entries)
+        int _today = 0;
+        DateTime _theCurrentTime = DateTime.Now;
+        string _todaysDate = _theCurrentTime.ToShortDateString();
+        foreach (Entry entry in _entries)
         {
-            if (entry._entryDate == todaysDate)
+            if (entry._entryDate == _todaysDate)
             {
-               today++;
+               _today++;
             }
         }
-        if (today != 1)
+        if (_today != 1)
         {
-            Console.WriteLine($"You have written {today} entries today.");
+            Console.WriteLine($"You have written {_today} entries today.");
         }
         else
         {
-            Console.WriteLine($"You have written {today} entry today.");
+            Console.WriteLine($"You have written {_today} entry today.");
         }
-        if (_Entries.Count != 1)
+        if (_entries.Count != 1)
         {
-            Console.WriteLine($"The current journal has {_Entries.Count} entries.");
+            Console.WriteLine($"The current journal has {_entries.Count} entries.");
         }
         else
         {
-            Console.WriteLine($"The current journal has {_Entries.Count} entry.");
+            Console.WriteLine($"The current journal has {_entries.Count} entry.");
         }
     }
 }

@@ -12,8 +12,8 @@ public class Entry
 
     public String GetDate()
     {
-        DateTime theCurrentTime = DateTime.Now;
-        string dateText = theCurrentTime.ToShortDateString();
-        return dateText;
+        DateTime _theCurrentTime = DateTime.Now;
+        string _dateText = _theCurrentTime.ToShortDateString();
+        return _dateText;
     }
 }

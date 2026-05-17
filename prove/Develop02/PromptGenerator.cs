@@ -1,7 +1,7 @@
 public class PromptGenerator
 {
-    public List<Prompt> _Prompts = new List<Prompt>();
-    private List<String> _prompts = new List<String>
+    public List<Prompt> _prompts = new List<Prompt>();
+    private List<String> _promptText = new List<String>
     {"Who was the most interesting person I interacted with today?",
      "What was the best part of my day?",
      "How did I see the hand of the Lord in my life today?",
@@ -11,41 +11,42 @@ public class PromptGenerator
     
     public void InitializePrompts()
     {
-        for (int i = 0; i < _prompts.Count; i++)
+        for (int i = 0; i < _promptText.Count; i++)
         {
             Prompt prompt = new Prompt();
-            prompt._prompt = _prompts[i];
+            prompt._prompt = _promptText[i];
             prompt._used = false;
-            _Prompts.Add(prompt);
+            _prompts.Add(prompt);
         }
     }
 
     public String GetPrompt()
     {
+        Console.WriteLine($"The are {_prompts.Count} prompts available.");
         CheckQueue();
-        int ID;
+        int _promptID;
         Random rnd = new Random();
         do
         {
-            ID = rnd.Next(0, _Prompts.Count);
-        } while (_Prompts[ID]._used == true);
-        _Prompts[ID]._used = true;
-        return _Prompts[ID]._prompt;
+            _promptID = rnd.Next(0, _prompts.Count);
+        } while (_prompts[_promptID]._used == true);
+        _prompts[_promptID]._used = true;
+        return _prompts[_promptID]._prompt;
     }
 
     public void CheckQueue()
     {
-        int used = 0;
-        foreach (Prompt prompt in _Prompts)
+        int _used = 0;
+        foreach (Prompt prompt in _prompts)
         {
             if (prompt._used == true)
             {
-                used++;
+                _used++;
             }
         }
-        if (used == _Prompts.Count)
+        if (_used == _prompts.Count)
         {
-            foreach (Prompt prompt in _Prompts)
+            foreach (Prompt prompt in _prompts)
             {
                 prompt._used = false;
             }
