@@ -1,0 +1,7 @@
+To add a scripture of your choice to this memorizer, do the following:
+1. Create a file named book.txt where the book includes any numbers such as '1 Nephi'
+2. Paste in the scripture, with verse numbers in the format '1 I Nephi' not '1. I Nephi"
+3. Ensure that there is a blank line in between each verse.
+4. Save the file in the same folder as the rest of the files for this project.
+5. Go to Program.cs and add the filename minus the '.txt' to the list of filenames
+6. Also in the Program.cs file, add the verse numbers into the list of verseNumbers.
