@@ -1,0 +1,4 @@
+0
+SimpleGoal|Finish this project|Finish the polymorphism project.|500|false
+EternalGoal|Attend the temple|Attend and perform ordinances|200
+ChecklistGoal|Attend church regularly|Attend church each week for 2 months|100|200|8|0
