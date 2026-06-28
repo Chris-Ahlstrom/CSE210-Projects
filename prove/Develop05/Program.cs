@@ -79,9 +79,7 @@ class Program
             {
                 if (i == index)
                 {
-                    //Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine($"[*]  {options[i]}");
-                    //Console.ResetColor();
                 }
                 else
                 {
