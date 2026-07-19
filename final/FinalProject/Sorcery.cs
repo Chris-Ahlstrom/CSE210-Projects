@@ -4,4 +4,7 @@ public class Sorcery : Card
     {
         PromptSpellEffect();
     }
+
+    public Sorcery(Dictionary<string, string> data) : base(data) 
+    {}
 }

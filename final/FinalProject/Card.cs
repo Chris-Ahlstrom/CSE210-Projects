@@ -8,11 +8,27 @@ public class Card
     protected bool _isPermanent = true;
     protected bool _isLegendary = false;
     protected int _manaValue;
+    protected int _copies;
     protected List<string> _colors = new List<string>();
     protected List<string> _abilities = new List<string>();
     protected List<string> _subtypes = new List<string>();
     protected List<string> _effects = new List<string>();
     protected static string _insert = "";
+
+    public string Name => _name;
+    public string ManaCost => _manaCost;
+    public string CardType => _cardType;
+    public bool IsLand => _isLand;
+    public bool IsCommander => _isCommander;
+    public bool IsPermanent => _isPermanent;
+    public bool IsLegendary => _isLegendary;
+    public int ManaValue => _manaValue;
+    public int Copies => _copies;
+
+    public IReadOnlyList<string> Colors => _colors;
+    public IReadOnlyList<string> Abilities => _abilities;
+    public IReadOnlyList<string> Subtypes => _subtypes;
+    public IReadOnlyList<string> Effects => _effects;
 
     public Card(string insert)
     {
@@ -37,8 +53,49 @@ public class Card
         }
     }
 
-    public void SetCardData()
-    {}
+    public Card(Dictionary<string, string> data)
+    {
+        _name = data["Name"];
+        _manaCost = data["ManaCost"];
+        _cardType = data["CardType"];
+        _isLand = bool.Parse(data["IsLand"]);
+        _isCommander = bool.Parse(data["IsCommander"]);
+        _isPermanent = bool.Parse(data["IsPermanent"]);
+        _isLegendary = bool.Parse(data["IsLegendary"]);
+        _manaValue = int.Parse(data["ManaValue"]);
+        _copies = int.Parse(data["Copies"]);
+        _colors = data["Colors"].Split(';').ToList();
+        _abilities = data["Abilities"].Split(';').ToList();
+        _subtypes = data["Subtypes"].Split(';').ToList();
+        _effects = data["Effects"].Split(';').ToList();
+    }
+
+
+    public void PromptForCopies()
+    {
+        Console.Write($"How many copies of {_name} would you like to add? ");
+        int copiesToAdd = 0;
+        do
+        {
+            if (!int.TryParse(Console.ReadLine(), out copiesToAdd))
+            {
+                Console.Write("Please enter a valid non-negative integer. ");
+            }
+            else
+            {
+                if (copiesToAdd <= 0)
+                {
+                    Console.Write("Please enter a valid non-negative integer. ");
+                }
+            }
+        }while (copiesToAdd <= 0);
+        _copies = copiesToAdd;
+    }
+    
+    public void SetCopies(int newCopyNum)
+    {
+        _copies = newCopyNum;
+    }
 
     public void PromptAbilities()
     {
@@ -76,15 +133,41 @@ public class Card
     }
 
     public string GetCardInfo()
-    {}
+    {
+        return _name + " " + _manaCost;
+    }
 
     public void CostConverter()
-    {}
+    {
+        if (_manaValue == 0)
+        {
+            foreach (char c in _manaCost)
+            {
+                if (int.TryParse(c.ToString(), out int num))
+                {
+                    _manaValue += num;
+                }
+                else if (c.ToString() == "X")
+                {
+                    _manaValue += 0;
+                }
+                else
+                {
+                    _manaValue++;
+                }
+            }
+        }
+    }
 
-    public List GetCreatureTypes()
-    {}
+    public int GetManaValue()
+    {
+        return _manaValue;
+    }
 
-    public List GetColors();
+    public List<string> GetColors()
+    {
+        return _colors;
+    }
 
     public bool CheckIfPermanent()
     {

@@ -1,0 +1,75 @@
+Card:
+Name=Krenko, Mob Boss
+ManaCost=2RR
+CardType=
+IsLand=False
+IsCommander=True
+IsPermanent=True
+IsLegendary=True
+ManaValue=0
+Copies=1
+Colors=
+Abilities={Tap}: Create X 1/1 red Goblin creature tokens where X is the number of Goblins you control.
+Subtypes=
+Effects=
+
+Card:
+Name=Sol Ring
+ManaCost=1
+CardType=
+IsLand=False
+IsCommander=False
+IsPermanent=True
+IsLegendary=False
+ManaValue=0
+Copies=1
+Colors=
+Abilities={Tap}: Add {C}{C}
+Subtypes=
+Effects=
+
+Card:
+Name=Arcane Signet
+ManaCost=2
+CardType=
+IsLand=False
+IsCommander=False
+IsPermanent=True
+IsLegendary=False
+ManaValue=0
+Copies=1
+Colors=
+Abilities={Tap}: Add one mana of any color in your commander's color identity.
+Subtypes=
+Effects=
+
+Card:
+Name=General Kreat
+ManaCost=2R
+CardType=
+IsLand=False
+IsCommander=False
+IsPermanent=True
+IsLegendary=True
+ManaValue=0
+Copies=1
+Colors=
+Abilities=
+Subtypes=
+Effects=
+
+Card:
+Name=Snow-Covered Mountain
+ManaCost=0
+CardType=
+IsLand=True
+IsCommander=False
+IsPermanent=True
+IsLegendary=False
+ManaValue=0
+Copies=33
+Colors=
+Abilities=
+Subtypes=
+Effects=
+

@@ -5,4 +5,7 @@ public class Instant : Card
     {
         PromptSpellEffect();
     }
+
+    public Instant(Dictionary<string, string> data) : base(data) 
+    {}
 }

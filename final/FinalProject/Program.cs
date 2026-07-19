@@ -5,35 +5,45 @@ class Program
 {
     static void Main(string[] args)
     {
-        List<string> cardTypes = new List<string>{"Land", "Creature", "Artifact", "Enchantment", "Planeswalker", "Instant", "Sorcery", "Battle"};
-        string cardMenu = "Select a Card to Add";
         int choice;
         string userName;
+        bool run = true;
+        List<string> booleanAnswers = new List<string>{"Yes", "No"};
+        string booleanMenu = "Would you like to quit?";
         List<string> users = GetUsers();
-        if (users.Count != 0)
+        do
         {
-            users.Add("New User");
-            Console.WriteLine("Please select a user:");
-            choice = Menu(users, "Users");
-            Console.Clear();
-            if (choice == users.Count - 1)
+            if (users.Count != 0)
             {
-                users.RemoveAt(users.Count - 1);
-                users = AddUsers(users);
-                userName = users[users.Count - 1];
+                users.Add("New User");
+                Console.WriteLine("Please select a user:");
+                choice = Menu(users, "Users");
+                Console.Clear();
+                if (choice == users.Count - 1)
+                {
+                    users.RemoveAt(users.Count - 1);
+                    users = AddUsers(users);
+                    userName = users[users.Count - 1];
+                }
+                else
+                {
+                    users.RemoveAt(users.Count - 1);
+                    userName = users[choice];
+                }
             }
             else
             {
-                userName = users[choice];
+                users = AddUsers(users);
+                userName = users[users.Count - 1];
             }
-        }
-        else
-        {
-            users = AddUsers(users);
-            userName = users[users.Count - 1];
-        }
-        User you = new User(userName);
-        //choice = Menu(cardTypes, cardMenu);
+            User you = new User(userName);
+            choice = Menu(booleanAnswers, booleanMenu);
+            if ( choice == 0)
+            {
+                run = false;
+            }
+        } while (run);
+        Console.WriteLine("Thanks for using this Magic: The Gathering decklist storage and analysis program!");
     }
 
     public static int Menu(List<string> options, string menuTitle)
@@ -70,8 +80,8 @@ class Program
                     break;
 
                 case ConsoleKey.Enter:
-                Console.Clear();
-                return index;
+                    Console.Clear();
+                    return index;
             }
         }
     }

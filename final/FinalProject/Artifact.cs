@@ -5,4 +5,7 @@ public class Artifact : Card
         PromptSpellEffect();
         PromptAbilities();
     }
+
+    public Artifact(Dictionary<string, string> data) : base(data) 
+    {}
 }

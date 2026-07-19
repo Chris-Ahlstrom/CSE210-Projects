@@ -23,4 +23,9 @@ public class Battle : Card
         } while (temporary <= 0);
         _startingDefenseCounters = temporary;
     }
+
+    public Battle(Dictionary<string, string> data) : base(data)
+    {
+        _startingDefenseCounters = int.Parse(data["StartingDefenseCounters"]);
+    }
 }

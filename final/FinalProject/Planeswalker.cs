@@ -8,4 +8,9 @@ public class Planeswalker : Card
         Console.Write($"What is the starting loyalty of {_name}? ");
         _startingLoyalty = Console.ReadLine();
     }
+
+    public Planeswalker(Dictionary<string, string> data) : base(data)
+    {
+        _startingLoyalty = data["StartingLoyalty"];
+    }
 }

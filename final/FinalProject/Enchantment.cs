@@ -5,4 +5,7 @@ public class Enchantment : Card
         PromptSpellEffect();
         PromptAbilities();
     }
+
+    public Enchantment(Dictionary<string, string> data) : base(data) 
+    {}
 }

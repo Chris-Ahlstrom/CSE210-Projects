@@ -18,6 +18,12 @@ public class Land : Card
                 _isBasic = true;
             }
         }
+        _isLand = true;
+    }
+
+    public Land(Dictionary<string, string> data) : base(data)
+    {
+        _isBasic = bool.Parse(data["IsBasic"]);
     }
 
     public bool CheckBasic()
